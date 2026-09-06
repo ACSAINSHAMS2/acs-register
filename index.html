@@ -11,12 +11,7 @@
 
   <title>ACS Student Chapter</title>
 
-
   <style>
-
-    /* =========================================
-       RESET
-    ========================================= */
 
     * {
       margin: 0;
@@ -24,16 +19,13 @@
       box-sizing: border-box;
     }
 
-
     html,
     body {
       width: 100%;
       min-height: 100%;
     }
 
-
     body {
-
       min-height: 100vh;
 
       font-family:
@@ -69,7 +61,7 @@
 
       background-size: cover;
 
-      background-position: center center;
+      background-position: center;
 
       background-repeat: no-repeat;
 
@@ -202,14 +194,7 @@
     }
 
 
-    /*
-      THIS IS THE GLOW CIRCLE
-
-      It is centered using flexbox.
-      No animation.
-      No transform.
-      So it cannot move away from the logo.
-    */
+    /* SIMPLE CENTERED CIRCLE */
 
     .logo-wrapper::before {
 
@@ -225,63 +210,24 @@
 
       top: 50%;
 
-      margin-left: -89px;
-
-      margin-top: -89px;
-
-      border-radius: 50%;
-
-      background:
-        linear-gradient(
-          135deg,
-          #ffffff,
-          #7eb3ff,
-          #ffffff
-        );
-
-      box-shadow:
-
-        0 0 18px
-        rgba(100, 170, 255, 0.9),
-
-        0 0 45px
-        rgba(50, 130, 255, 0.55);
-
-      z-index: 0;
-    }
-
-
-    /*
-      SECOND GLOW
-    */
-
-    .logo-wrapper::after {
-
-      content: "";
-
-      position: absolute;
-
-      width: 190px;
-
-      height: 190px;
-
-      left: 50%;
-
-      top: 50%;
-
-      margin-left: -95px;
-
-      margin-top: -95px;
+      transform:
+        translate(-50%, -50%);
 
       border-radius: 50%;
 
       border:
-        1px solid
-        rgba(255, 255, 255, 0.45);
+        5px solid white;
+
+      background:
+        rgba(255, 255, 255, 0.04);
 
       box-shadow:
-        0 0 35px
-        rgba(60, 140, 255, 0.35);
+
+        0 0 20px
+        rgba(255, 255, 255, 0.35),
+
+        0 0 45px
+        rgba(50, 130, 255, 0.35);
 
       z-index: 0;
     }
@@ -306,15 +252,13 @@
       border-radius: 50%;
 
       border:
-        5px solid
-        white;
+        5px solid white;
 
       z-index: 2;
 
       display: block;
 
       box-shadow:
-
         0 8px 30px
         rgba(0, 0, 0, 0.45);
     }
@@ -619,11 +563,10 @@
 
       .container {
 
-        padding-top: 40px;
-
-        padding-left: 18px;
-
-        padding-right: 18px;
+        padding:
+          40px
+          18px
+          25px;
       }
 
 
@@ -641,21 +584,12 @@
 
         height: 158px;
 
-        margin-left: -79px;
+        left: 50%;
 
-        margin-top: -79px;
-      }
+        top: 50%;
 
-
-      .logo-wrapper::after {
-
-        width: 170px;
-
-        height: 170px;
-
-        margin-left: -85px;
-
-        margin-top: -85px;
+        transform:
+          translate(-50%, -50%);
       }
 
 
@@ -755,7 +689,7 @@
 
     <a
       class="button register"
-      href="PUT_REGISTER_LINK_HERE"
+      href="https://tally.so/r/xXqXBG"
       target="_blank"
       rel="noopener noreferrer">
 
