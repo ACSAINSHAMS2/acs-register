@@ -1,354 +1,795 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
   <title>ACS Student Chapter</title>
 
+
   <style>
+
+    /* =========================================
+       RESET
+    ========================================= */
+
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
+
+    html,
     body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+
+    body {
+
       min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
       color: white;
-      background: #050914;
+
+      background: #020817;
+
       overflow-x: hidden;
     }
 
-    /* Background */
+
+    /* =========================================
+       BACKGROUND
+    ========================================= */
+
     .background {
+
       position: fixed;
-      inset: -30px;
-      z-index: -3;
 
-      background-image: url("back.jpeg");
+      top: -40px;
+      left: -40px;
+      right: -40px;
+      bottom: -40px;
+
+      z-index: -5;
+
+      background-image:
+        url("back.jpeg");
+
       background-size: cover;
-      background-position: center;
 
-      filter: blur(7px);
+      background-position: center center;
+
+      background-repeat: no-repeat;
+
+      filter: blur(5px);
+
       transform: scale(1.08);
 
-      animation: zoom 18s ease-in-out infinite alternate;
+      animation:
+        backgroundMove
+        20s
+        ease-in-out
+        infinite
+        alternate;
     }
 
-    @keyframes zoom {
+
+    @keyframes backgroundMove {
+
       from {
         transform: scale(1.08);
       }
 
       to {
-        transform: scale(1.18);
+        transform: scale(1.15);
       }
+
     }
 
+
+    /* =========================================
+       DARK OVERLAY
+    ========================================= */
+
     .overlay {
+
       position: fixed;
+
       inset: 0;
-      z-index: -2;
+
+      z-index: -4;
 
       background:
         linear-gradient(
           180deg,
-          rgba(0, 5, 20, .72),
-          rgba(0, 12, 35, .58),
-          rgba(0, 0, 0, .84)
+          rgba(0, 5, 18, 0.62),
+          rgba(0, 15, 40, 0.55),
+          rgba(0, 0, 0, 0.78)
         );
     }
 
-    /* Main */
+
+    /* =========================================
+       BLUE LIGHT
+    ========================================= */
+
+    .light {
+
+      position: fixed;
+
+      width: 450px;
+      height: 450px;
+
+      left: 50%;
+      top: -250px;
+
+      transform:
+        translateX(-50%);
+
+      border-radius: 50%;
+
+      background:
+        rgba(40, 120, 255, 0.18);
+
+      filter: blur(100px);
+
+      z-index: -3;
+
+      pointer-events: none;
+    }
+
+
+    /* =========================================
+       MAIN CONTAINER
+    ========================================= */
+
     .container {
+
       width: 100%;
-      max-width: 470px;
+
+      max-width: 480px;
+
       min-height: 100vh;
 
-      margin: auto;
-      padding: 50px 22px 30px;
+      margin: 0 auto;
+
+      padding:
+        48px
+        22px
+        25px;
 
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
 
       text-align: center;
     }
 
-    /* Logo */
+
+    /* =========================================
+       LOGO
+    ========================================= */
+
     .logo-wrapper {
+
       position: relative;
-      width: 165px;
-      height: 165px;
+
+      width: 170px;
+
+      height: 170px;
+
       margin-bottom: 25px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
     }
 
-    .logo-ring {
-  position: absolute;
 
-  width: 175px;
-  height: 175px;
+    /*
+      THIS IS THE GLOW CIRCLE
 
-  top: 50%;
-  left: 50%;
+      It is centered using flexbox.
+      No animation.
+      No transform.
+      So it cannot move away from the logo.
+    */
 
-  transform: translate(-50%, -50%);
+    .logo-wrapper::before {
 
-  border-radius: 50%;
+      content: "";
 
-  background: linear-gradient(
-    135deg,
-    #ffffff,
-    #69a4ff,
-    #ffffff
-  );
-
-  box-shadow:
-    0 0 25px rgba(80, 150, 255, 0.65);
-
-  z-index: 0;
-}
-    .logo {
       position: absolute;
-      width: 100%;
-      height: 100%;
+
+      width: 178px;
+
+      height: 178px;
+
+      left: 50%;
+
+      top: 50%;
+
+      margin-left: -89px;
+
+      margin-top: -89px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #7eb3ff,
+          #ffffff
+        );
+
+      box-shadow:
+
+        0 0 18px
+        rgba(100, 170, 255, 0.9),
+
+        0 0 45px
+        rgba(50, 130, 255, 0.55);
+
+      z-index: 0;
+    }
+
+
+    /*
+      SECOND GLOW
+    */
+
+    .logo-wrapper::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 190px;
+
+      height: 190px;
+
+      left: 50%;
+
+      top: 50%;
+
+      margin-left: -95px;
+
+      margin-top: -95px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.45);
+
+      box-shadow:
+        0 0 35px
+        rgba(60, 140, 255, 0.35);
+
+      z-index: 0;
+    }
+
+
+    /* =========================================
+       ACS IMAGE
+    ========================================= */
+
+    .logo {
+
+      position: relative;
+
+      width: 160px;
+
+      height: 160px;
 
       object-fit: cover;
 
+      object-position: center;
+
       border-radius: 50%;
-      border: 5px solid white;
+
+      border:
+        5px solid
+        white;
+
+      z-index: 2;
+
+      display: block;
 
       box-shadow:
-        0 0 30px rgba(60, 140, 255, .55),
-        0 12px 40px rgba(0, 0, 0, .45);
+
+        0 8px 30px
+        rgba(0, 0, 0, 0.45);
     }
 
-    /* Title */
+
+    /* =========================================
+       TITLE
+    ========================================= */
+
     h1 {
-      font-size: 31px;
+
+      font-size:
+        clamp(26px, 7vw, 34px);
+
       line-height: 1.15;
+
       font-weight: 800;
 
       margin-bottom: 9px;
 
+      letter-spacing: 0.2px;
+
       text-shadow:
-        0 3px 15px rgba(0,0,0,.5);
+        0 3px 15px
+        rgba(0, 0, 0, 0.65);
     }
 
+
     .subtitle {
-      color: rgba(255,255,255,.78);
+
       font-size: 15px;
+
+      color:
+        rgba(255, 255, 255, 0.82);
+
+      letter-spacing: 0.4px;
 
       margin-bottom: 28px;
     }
 
-    /* Buttons */
+
+    /* =========================================
+       MAIN BUTTON
+    ========================================= */
+
     .button {
+
       width: 100%;
+
       min-height: 60px;
 
+      padding:
+        15px
+        20px;
+
       margin: 8px 0;
-      padding: 15px 20px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       gap: 11px;
 
       border-radius: 18px;
 
       text-decoration: none;
+
       color: white;
 
       font-size: 17px;
+
       font-weight: 700;
 
-      border: 1px solid rgba(255,255,255,.22);
+      letter-spacing: 0.5px;
 
-      background: rgba(255,255,255,.12);
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.25);
 
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
+      background:
+        rgba(255, 255, 255, 0.12);
+
+      backdrop-filter:
+        blur(16px);
+
+      -webkit-backdrop-filter:
+        blur(16px);
 
       box-shadow:
-        0 10px 30px rgba(0,0,0,.25);
+        0 10px 30px
+        rgba(0, 0, 0, 0.28);
 
-      transition: .25s ease;
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
     }
+
 
     .button:hover {
-      transform: translateY(-3px);
-      background: rgba(255,255,255,.2);
+
+      transform:
+        translateY(-3px);
+
+      background:
+        rgba(255, 255, 255, 0.19);
+
+      box-shadow:
+        0 15px 38px
+        rgba(0, 0, 0, 0.38);
     }
 
+
+    .button:active {
+
+      transform:
+        scale(0.98);
+    }
+
+
+    /* =========================================
+       REGISTER BUTTON
+    ========================================= */
+
     .register {
+
       background:
         linear-gradient(
           135deg,
-          rgba(20,113,255,.96),
-          rgba(0,67,190,.94)
+          #1680ff,
+          #0750c9
+        );
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.35);
+
+      box-shadow:
+        0 10px 35px
+        rgba(0, 100, 255, 0.38);
+    }
+
+
+    .register:hover {
+
+      background:
+        linear-gradient(
+          135deg,
+          #2990ff,
+          #0758dc
         );
 
       box-shadow:
-        0 10px 35px rgba(0,87,255,.35);
+        0 15px 42px
+        rgba(0, 110, 255, 0.52);
     }
 
-    .register:hover {
-      box-shadow:
-        0 15px 40px rgba(0,102,255,.5);
-    }
 
-    /* Social button */
+    /* =========================================
+       SOCIAL BUTTON
+    ========================================= */
+
     .social-button {
+
       position: relative;
+
       cursor: pointer;
+
       font-family: inherit;
     }
 
+
     .arrow {
+
       position: absolute;
-      right: 22px;
+
+      right: 23px;
+
       font-size: 20px;
 
-      transition: transform .3s ease;
+      transition:
+        transform 0.3s ease;
     }
 
-    .social-button.active .arrow {
-      transform: rotate(180deg);
+
+    .social-button.active
+    .arrow {
+
+      transform:
+        rotate(180deg);
     }
 
-    /* Social links */
+
+    /* =========================================
+       SOCIAL LINKS
+    ========================================= */
+
     .social-links {
+
       width: 100%;
 
       max-height: 0;
+
       overflow: hidden;
 
       opacity: 0;
-      transform: translateY(-10px);
+
+      transform:
+        translateY(-8px);
 
       transition:
-        max-height .5s ease,
-        opacity .35s ease,
-        transform .35s ease;
+        max-height 0.45s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease;
     }
 
+
     .social-links.show {
+
       max-height: 330px;
 
       opacity: 1;
-      transform: translateY(0);
+
+      transform:
+        translateY(0);
     }
 
+
     .social {
+
       min-height: 53px;
+
       font-size: 15px;
+
       border-radius: 15px;
     }
 
+
+    /* =========================================
+       SOCIAL HOVER
+    ========================================= */
+
     .facebook:hover {
-      background: rgba(24,119,242,.7);
+
+      background:
+        rgba(24, 119, 242, 0.72);
     }
 
+
     .instagram:hover {
+
       background:
         linear-gradient(
           90deg,
-          rgba(245,133,41,.75),
-          rgba(221,42,123,.75),
-          rgba(129,52,175,.75)
+          rgba(245, 133, 41, 0.78),
+          rgba(221, 42, 123, 0.78),
+          rgba(129, 52, 175, 0.78)
         );
     }
 
+
     .tiktok:hover {
-      background: rgba(0,0,0,.7);
+
+      background:
+        rgba(0, 0, 0, 0.72);
     }
+
 
     .linkedin:hover {
-      background: rgba(10,102,194,.75);
+
+      background:
+        rgba(10, 102, 194, 0.78);
     }
 
-    /* Footer */
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
     .footer {
+
       margin-top: auto;
+
       padding-top: 35px;
 
-      color: rgba(255,255,255,.55);
+      color:
+        rgba(255, 255, 255, 0.55);
+
       font-size: 12px;
+
+      letter-spacing: 0.4px;
     }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
 
     @media (max-width: 500px) {
+
       .container {
+
         padding-top: 40px;
+
+        padding-left: 18px;
+
+        padding-right: 18px;
       }
+
 
       .logo-wrapper {
-        width: 145px;
-        height: 145px;
+
+        width: 150px;
+
+        height: 150px;
       }
 
+
+      .logo-wrapper::before {
+
+        width: 158px;
+
+        height: 158px;
+
+        margin-left: -79px;
+
+        margin-top: -79px;
+      }
+
+
+      .logo-wrapper::after {
+
+        width: 170px;
+
+        height: 170px;
+
+        margin-left: -85px;
+
+        margin-top: -85px;
+      }
+
+
+      .logo {
+
+        width: 140px;
+
+        height: 140px;
+      }
+
+
       h1 {
+
         font-size: 27px;
       }
+
+
+      .subtitle {
+
+        margin-bottom: 22px;
+      }
+
+
+      .button {
+
+        min-height: 58px;
+      }
+
     }
+
+
+    /* =========================================
+       ACCESSIBILITY
+    ========================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .background {
+
+        animation: none;
+      }
+
+      .button {
+
+        transition: none;
+      }
+
+    }
+
   </style>
+
 </head>
+
 
 <body>
 
+
+  <!-- BACKGROUND -->
+
   <div class="background"></div>
+
   <div class="overlay"></div>
+
+  <div class="light"></div>
+
+
+  <!-- CONTENT -->
 
   <main class="container">
 
-    <!-- ACS Logo -->
+
+    <!-- ACS LOGO -->
+
     <div class="logo-wrapper">
-      <div class="logo-ring"></div>
 
       <img
         class="logo"
         src="acs.jpeg.jpeg"
         alt="ACS Student Chapter">
+
     </div>
 
-    <!-- Title -->
-    <h1>ACS Student Chapter</h1>
+
+    <!-- TITLE -->
+
+    <h1>
+      ACS Student Chapter
+    </h1>
+
 
     <p class="subtitle">
       Ain Shams University
     </p>
 
-    <!-- Register -->
+
+    <!-- REGISTER -->
+
     <a
       class="button register"
       href="PUT_REGISTER_LINK_HERE"
       target="_blank"
       rel="noopener noreferrer">
 
-      📝
+      <span>📝</span>
+
       <span>REGISTER NOW</span>
 
     </a>
 
-    <!-- Social Media -->
+
+    <!-- SOCIAL MEDIA -->
+
     <button
       class="button social-button"
       id="socialButton"
       type="button">
 
-      🌐
+      <span>🌐</span>
+
       <span>SOCIAL MEDIA</span>
 
       <span class="arrow">⌄</span>
 
     </button>
 
-    <!-- Social Links -->
+
+    <!-- SOCIAL LINKS -->
+
     <div
       class="social-links"
       id="socialLinks">
+
+
+      <!-- FACEBOOK -->
 
       <a
         class="button social facebook"
@@ -356,10 +797,14 @@
         target="_blank"
         rel="noopener noreferrer">
 
-        📘
+        <span>📘</span>
+
         <span>Facebook</span>
 
       </a>
+
+
+      <!-- INSTAGRAM -->
 
       <a
         class="button social instagram"
@@ -367,10 +812,14 @@
         target="_blank"
         rel="noopener noreferrer">
 
-        📸
+        <span>📸</span>
+
         <span>Instagram</span>
 
       </a>
+
+
+      <!-- TIKTOK -->
 
       <a
         class="button social tiktok"
@@ -378,10 +827,14 @@
         target="_blank"
         rel="noopener noreferrer">
 
-        🎵
+        <span>🎵</span>
+
         <span>TikTok</span>
 
       </a>
+
+
+      <!-- LINKEDIN -->
 
       <a
         class="button social linkedin"
@@ -389,18 +842,29 @@
         target="_blank"
         rel="noopener noreferrer">
 
-        💼
+        <span>💼</span>
+
         <span>LinkedIn</span>
 
       </a>
 
+
     </div>
+
+
+    <!-- FOOTER -->
 
     <div class="footer">
+
       © 2026 ACS Student Chapter
+
     </div>
 
+
   </main>
+
+
+  <!-- JAVASCRIPT -->
 
   <script>
 
@@ -410,15 +874,25 @@
     const socialLinks =
       document.getElementById("socialLinks");
 
-    socialButton.addEventListener("click", function () {
 
-      socialButton.classList.toggle("active");
+    socialButton.addEventListener(
+      "click",
+      function () {
 
-      socialLinks.classList.toggle("show");
+        socialButton.classList.toggle(
+          "active"
+        );
 
-    });
+        socialLinks.classList.toggle(
+          "show"
+        );
+
+      }
+    );
 
   </script>
 
+
 </body>
+
 </html>
